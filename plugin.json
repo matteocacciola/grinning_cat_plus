@@ -1,0 +1,10 @@
+{
+    "name": "Grinning Cat Plus",
+    "description": "Introduce new LLMs, Embedders, Chunkers, File Managers, Parsers. It includes multimodal capabilities to the Grinning Cat framework, enabling the processing of images.",
+    "author_name": "Matteo Cacciola",
+    "plugin_url": "https://github.com/matteocacciola/grinning_cat_plus",
+    "tags": "core, default, language model, embedder, chunker, file storage, vector storage, langchain, parsers, multimodality, images, plugin",
+    "thumb": "",
+    "version": "0.1.0",
+    "dependencies": ["base_plugin"]
+}
