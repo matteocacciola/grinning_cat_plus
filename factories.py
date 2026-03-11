@@ -21,9 +21,9 @@ from .embedders.configs import (
     EmbedderAzureOpenAIConfig,
     EmbedderGeminiChatConfig,
     EmbedderOpenAICompatibleConfig,
-    # EmbedderCohereConfig,
+    EmbedderCohereConfig,
     EmbedderMistralAIChatConfig,
-    # EmbedderVoyageAIChatConfig,
+    EmbedderVoyageAIChatConfig,
     EmbedderOllamaConfig,
     EmbedderJinaConfig,
     Qwen3LocalEmbeddingsConfig,
@@ -45,7 +45,7 @@ from .llms.configs import (
     LLMOpenAICompatibleConfig,
     LLMOllamaConfig,
     LLMGeminiChatConfig,
-    # LLMCohereConfig,
+    LLMCohereConfig,
     LLMAzureOpenAIConfig,
     LLMAzureChatOpenAIConfig,
     LLMHuggingFaceEndpointConfig,
@@ -53,7 +53,7 @@ from .llms.configs import (
     LLMAnthropicChatConfig,
     LLMMistralAIChatConfig,
     LLMGroqChatConfig,
-    # LLMLiteLLMChatConfig,
+    LLMLiteLLMChatConfig,
 )
 
 
@@ -65,7 +65,7 @@ def factory_allowed_llms(allowed: List[LLMSettings], cat) -> List:
         LLMOpenAICompatibleConfig,
         LLMOllamaConfig,
         LLMGeminiChatConfig,
-        # LLMCohereConfig,
+        LLMCohereConfig,
         LLMAzureOpenAIConfig,
         LLMAzureChatOpenAIConfig,
         LLMHuggingFaceEndpointConfig,
@@ -73,7 +73,7 @@ def factory_allowed_llms(allowed: List[LLMSettings], cat) -> List:
         LLMAnthropicChatConfig,
         LLMMistralAIChatConfig,
         LLMGroqChatConfig,
-        # LLMLiteLLMChatConfig,
+        LLMLiteLLMChatConfig,
     ]
 
 
@@ -85,9 +85,9 @@ def factory_allowed_embedders(allowed: List[EmbedderSettings], lizard) -> List:
         EmbedderAzureOpenAIConfig,
         EmbedderGeminiChatConfig,
         EmbedderOpenAICompatibleConfig,
-        # EmbedderCohereConfig,
+        EmbedderCohereConfig,
         EmbedderMistralAIChatConfig,
-        # EmbedderVoyageAIChatConfig,
+        EmbedderVoyageAIChatConfig,
         EmbedderOllamaConfig,
         EmbedderJinaConfig,
         Qwen3LocalEmbeddingsConfig,

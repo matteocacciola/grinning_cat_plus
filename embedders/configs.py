@@ -1,11 +1,11 @@
 from typing import Type, Any
 from fastembed import TextEmbedding
-# from langchain_cohere import CohereEmbeddings
+from langchain_cohere import CohereEmbeddings
 from langchain_community.embeddings import FastEmbedEmbeddings
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_mistralai import MistralAIEmbeddings
 from langchain_openai import OpenAIEmbeddings, AzureOpenAIEmbeddings
-# from langchain_voyageai import VoyageAIEmbeddings
+from langchain_voyageai import VoyageAIEmbeddings
 from pydantic import ConfigDict, Field
 from cat.services.factory.embedder import EmbedderSettings, EmbedderMultimodalSettings
 from cat.utils import Enum
@@ -80,21 +80,21 @@ class EmbedderAzureOpenAIConfig(EmbedderSettings):
         return AzureOpenAIEmbeddings
 
 
-# class EmbedderCohereConfig(EmbedderSettings):
-#     cohere_api_key: str
-#     model: str = "embed-multilingual-v2.0"
-#
-#     model_config = ConfigDict(
-#         json_schema_extra={
-#             "humanReadableName": "Cohere Embedder",
-#             "description": "Configuration for Cohere embeddings",
-#             "link": "https://docs.cohere.com/docs/models",
-#         }
-#     )
-#
-#     @classmethod
-#     def pyclass(cls) -> Type[CohereEmbeddings]:
-#         return CohereEmbeddings
+class EmbedderCohereConfig(EmbedderSettings):
+    cohere_api_key: str
+    model: str = "embed-multilingual-v2.0"
+
+    model_config = ConfigDict(
+        json_schema_extra={
+            "humanReadableName": "Cohere Embedder",
+            "description": "Configuration for Cohere embeddings",
+            "link": "https://docs.cohere.com/docs/models",
+        }
+    )
+
+    @classmethod
+    def pyclass(cls) -> Type[CohereEmbeddings]:
+        return CohereEmbeddings
 
 
 # Enum for menu selection in the admin!
@@ -174,27 +174,27 @@ class EmbedderMistralAIChatConfig(EmbedderSettings):
         return MistralAIEmbeddings
 
 
-# class EmbedderVoyageAIChatConfig(EmbedderSettings):
-#     """
-#     Configuration for Voyage AI Chat Text Embedder.
-#
-#     This class contains the configuration for the Voyage AI Text Embedder.
-#     """
-#     api_key: str
-#     model: str = "voyage-3"
-#     batch_size: int
-#
-#     model_config = ConfigDict(
-#         json_schema_extra={
-#             "humanReadableName": "Voyage AI Embedder",
-#             "description": "Configuration for Voyage AI Embedder",
-#             "link": "https://docs.voyageai.com/docs/embeddings",
-#         }
-#     )
-#
-#     @classmethod
-#     def pyclass(cls) -> Type[VoyageAIEmbeddings]:
-#         return VoyageAIEmbeddings
+class EmbedderVoyageAIChatConfig(EmbedderSettings):
+    """
+    Configuration for Voyage AI Chat Text Embedder.
+
+    This class contains the configuration for the Voyage AI Text Embedder.
+    """
+    api_key: str
+    model: str = "voyage-3"
+    batch_size: int
+
+    model_config = ConfigDict(
+        json_schema_extra={
+            "humanReadableName": "Voyage AI Embedder",
+            "description": "Configuration for Voyage AI Embedder",
+            "link": "https://docs.voyageai.com/docs/embeddings",
+        }
+    )
+
+    @classmethod
+    def pyclass(cls) -> Type[VoyageAIEmbeddings]:
+        return VoyageAIEmbeddings
 
 
 class EmbedderOllamaConfig(EmbedderSettings):

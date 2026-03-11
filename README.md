@@ -36,6 +36,7 @@ The plugin also adds multimodal parsing behavior (notably image handling) when t
 
 Enabled via `factory_allowed_llms` in `factories.py`:
 
+- Cohere
 - OpenAI Chat
 - OpenAI Completions
 - OpenAI-compatible APIs
@@ -47,10 +48,6 @@ Enabled via `factory_allowed_llms` in `factories.py`:
 - Anthropic
 - Mistral AI
 - Groq
-
-Currently present but disabled in source comments:
-
-- Cohere
 - LiteLLM
 
 ### Embedders
@@ -60,6 +57,7 @@ Enabled via `factory_allowed_embedders` in `factories.py`:
 - Qdrant FastEmbed (local)
 - OpenAI
 - Azure OpenAI
+- Cohere embeddings
 - Gemini embeddings
 - OpenAI-compatible embeddings
 - Fake/default embedder
@@ -72,10 +70,6 @@ Enabled via `factory_allowed_embedders` in `factories.py`:
 - Qwen3 via Text Embeddings Inference (TEI)
 - Jina multimodal embedder
 - Jina CLIP multimodal embedder
-
-Currently present but disabled in source comments:
-
-- Cohere embeddings
 - VoyageAI embeddings
 
 ### File managers

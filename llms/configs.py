@@ -1,13 +1,13 @@
 from typing import Type
 from langchain_anthropic import ChatAnthropic
-# from langchain_cohere import ChatCohere
+from langchain_cohere import ChatCohere
 from langchain_community.llms import (
     HuggingFaceTextGenInference,
     HuggingFaceEndpoint,
 )
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_groq import ChatGroq
-# from langchain_litellm import ChatLiteLLM
+from langchain_litellm import ChatLiteLLM
 from langchain_mistralai import ChatMistralAI
 from langchain_openai import AzureChatOpenAI
 from langchain_openai import AzureOpenAI
@@ -128,23 +128,23 @@ class LLMAzureOpenAIConfig(LLMSettings):
         return AzureOpenAI
 
 
-# class LLMCohereConfig(LLMSettings):
-#     cohere_api_key: str
-#     model: str = "command"
-#     temperature: float = 0.7
-#     streaming: bool = True
-#
-#     model_config = ConfigDict(
-#         json_schema_extra={
-#             "humanReadableName": "Cohere",
-#             "description": "Configuration for Cohere language model",
-#             "link": "https://docs.cohere.com/docs/models",
-#         }
-#     )
-#
-#     @classmethod
-#     def pyclass(cls) -> Type[ChatCohere]:
-#         return ChatCohere
+class LLMCohereConfig(LLMSettings):
+    cohere_api_key: str
+    model: str = "command"
+    temperature: float = 0.7
+    streaming: bool = True
+
+    model_config = ConfigDict(
+        json_schema_extra={
+            "humanReadableName": "Cohere",
+            "description": "Configuration for Cohere language model",
+            "link": "https://docs.cohere.com/docs/models",
+        }
+    )
+
+    @classmethod
+    def pyclass(cls) -> Type[ChatCohere]:
+        return ChatCohere
 
 
 # https://python.langchain.com/en/latest/modules/models/llms/integrations/huggingface_textgen_inference.html
@@ -314,24 +314,24 @@ class LLMGroqChatConfig(LLMSettings):
         return ChatGroq
 
 
-# class LLMLiteLLMChatConfig(LLMSettings):
-#     api_key: str
-#     model: str = "perplexity/sonar-pro"
-#     temperature: float = 0.7
-#     max_tokens: int | None = None
-#     max_retries: int = 2
-#     top_p: int | None = None
-#     top_k: int | None = None
-#
-#     model_config = ConfigDict(
-#         json_schema_extra={
-#             "humanReadableName": "LiteLLM",
-#             "description": "Configuration for LiteLLM",
-#             "link": "https://www.litellm.ai/",
-#         },
-#         extra="allow",
-#     )
-#
-#     @classmethod
-#     def pyclass(cls) -> Type[ChatLiteLLM]:
-#         return ChatLiteLLM
+class LLMLiteLLMChatConfig(LLMSettings):
+    api_key: str
+    model: str = "perplexity/sonar-pro"
+    temperature: float = 0.7
+    max_tokens: int | None = None
+    max_retries: int = 2
+    top_p: int | None = None
+    top_k: int | None = None
+
+    model_config = ConfigDict(
+        json_schema_extra={
+            "humanReadableName": "LiteLLM",
+            "description": "Configuration for LiteLLM",
+            "link": "https://www.litellm.ai/",
+        },
+        extra="allow",
+    )
+
+    @classmethod
+    def pyclass(cls) -> Type[ChatLiteLLM]:
+        return ChatLiteLLM
