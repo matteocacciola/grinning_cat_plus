@@ -123,12 +123,10 @@ def factory_allowed_chunkers(allowed: List[ChunkerSettings], cat) -> List:
 
 
 @hook(priority=1)
-def lizard_notify_plugin_installation(plugin_id: str, plugin_path: str, lizard: BillTheLizard) -> None:
+def lizard_notify_plugin_installation(plugin_id: str, plugin_path: str, lizard: BillTheLizard):
     this_plugin_id = lizard.mad_hatter.get_plugin().id
     if this_plugin_id != plugin_id:
-        raise ValueError(
-            f"Plugin id mismatch: Expected {plugin_id}, got {this_plugin_id} when installing {plugin_path}"
-        )
+        return
 
     # for each Cheshire Cat, activate this plugin
     ccat_ids = crud_settings.get_agents_main_keys()
