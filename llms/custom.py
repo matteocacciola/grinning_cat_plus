@@ -4,10 +4,8 @@ from langchain_openai.chat_models import ChatOpenAI
 
 
 class CustomOpenAI(ChatOpenAI):
-    url: str
-
     def __init__(self, **kwargs):
-        super().__init__(model_kwargs={}, base_url=kwargs["url"], **kwargs)
+        super().__init__(model_kwargs={}, **kwargs)
 
 
 class CustomOllama(ChatOllama):
