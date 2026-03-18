@@ -19,11 +19,12 @@ from .custom import CustomOpenAI, CustomOllama
 
 
 class LLMOpenAICompatibleConfig(LLMSettings):
-    url: str
-    temperature: float = 0.01
-    model_name: str
     api_key: str
+    base_url: str
+    model: str
+    temperature: float = 0.01
     streaming: bool = True
+    timeout: int = 120
 
     model_config = ConfigDict(
         json_schema_extra={
