@@ -26,15 +26,29 @@ class CustomOpenAIEmbeddings(Embeddings):
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         # OpenAI API expects JSON payload, not form data
-        ret = httpx.post(self.url, json={"model": self.model, "input": texts}, timeout=300.0, headers=self.headers)
-        ret.raise_for_status()
-        return [e["embedding"] for e in ret.json()["data"]]
+        response = requests.post(
+            self.url,
+            headers=self.headers,
+            json={"input": texts, "model": self.model},
+            timeout=300,
+        )
+        response.raise_for_status()
+
+        to_return = [e["embedding"] for e in response.json()["data"]]
+        return to_return
 
     def embed_query(self, text: str) -> List[float]:
         # OpenAI API expects JSON payload, not form data
-        ret = httpx.post(self.url, json={"model": self.model, "input": text}, timeout=300.0, headers=self.headers)
-        ret.raise_for_status()
-        return ret.json()["data"][0]["embedding"]
+        response = requests.post(
+            self.url,
+            headers=self.headers,
+            json={"input": text, "model": self.model},
+            timeout=300,
+        )
+        response.raise_for_status()
+
+        to_return = response.json()["data"][0]["embedding"]
+        return to_return
 
 
 class CustomOllamaEmbeddings(Embeddings):
