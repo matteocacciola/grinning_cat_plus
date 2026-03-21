@@ -12,19 +12,27 @@ from cat.utils import retrieve_image
 
 class CustomOpenAIEmbeddings(Embeddings):
     """Use OpenAI-compatible API as embedder (like llama-cpp-python)."""
-    def __init__(self, url, model):
+    def __init__(self, url: str, model: str, api_key: str | None = None):
         self.url = os.path.join(url, "v1/embeddings")
         self.model = model
+        self.api_key = api_key
+
+    @property
+    def headers(self):
+        headers = {"Content-Type": "application/json"}
+        if self.api_key:
+            headers["Authorization"] = f"Bearer {self.api_key}"
+        return headers
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         # OpenAI API expects JSON payload, not form data
-        ret = httpx.post(self.url, json={"model": self.model, "input": texts}, timeout=300.0)
+        ret = httpx.post(self.url, json={"model": self.model, "input": texts}, timeout=300.0, headers=self.headers)
         ret.raise_for_status()
         return [e["embedding"] for e in ret.json()["data"]]
 
     def embed_query(self, text: str) -> List[float]:
         # OpenAI API expects JSON payload, not form data
-        ret = httpx.post(self.url, json={"model": self.model, "input": text}, timeout=300.0)
+        ret = httpx.post(self.url, json={"model": self.model, "input": text}, timeout=300.0, headers=self.headers)
         ret.raise_for_status()
         return ret.json()["data"][0]["embedding"]
 
